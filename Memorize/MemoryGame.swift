@@ -20,8 +20,19 @@ struct MemoryGame<CardContent> {
         }
     }
     
-    func choose(card: Card) {
-        print("choose card: \(card)")
+    func index(of card: Card) -> Int {
+        for index in 0..<self.cards.count {
+            if self.cards[index].id == card.id {
+                return index
+            }
+        }
+        return 0
+    }
+    
+    mutating func choose(card: Card) {
+        let chosenIndex: Int = self.index(of: card)
+        self.cards[chosenIndex].isFaceUp = !self.cards[chosenIndex].isFaceUp
+        
     }
     
     // Identifiable & id让ForEach可以使用Array<Cards>
