@@ -27,17 +27,18 @@ struct CardView: View {
     var card: MemoryGame<String>.Card
     
     var body: some View {
-        ZStack {
-            if(card.isFaceUp) {
-                RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
-                RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
-                Text(card.content).font(Font.largeTitle)
-            } else {
-                RoundedRectangle(cornerRadius: 10.0).fill()
-            }
-           
-        }.foregroundColor(Color.orange)
-        
+        GeometryReader(content: { geometry in
+            ZStack {
+                if self.card.isFaceUp {
+                    RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
+                    RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
+                    Text(self.card.content).font(Font.largeTitle)
+                } else {
+                    RoundedRectangle(cornerRadius: 10.0).fill()
+                }
+               
+            }.foregroundColor(Color.orange)
+        })
     }
 }
 
