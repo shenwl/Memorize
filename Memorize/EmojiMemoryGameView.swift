@@ -39,7 +39,7 @@ struct CardView: View {
                
             }
             .foregroundColor(Color.orange)
-            .font(Font.system(size: min(geometry.size.width, geometry.size.height)))
+            .font(Font.system(size: min(geometry.size.width, geometry.size.height) * 0.75))
         })
     }
 }
