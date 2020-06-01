@@ -44,7 +44,11 @@ struct CardView: View {
            
         }
         .foregroundColor(Color.orange)
-        .font(Font.system(size: min(size.width, size.height) * fontScaleFactor))
+        .font(Font.system(size: fontSize(for: size)))
+    }
+    
+    func fontSize(for size: CGSize) -> CGFloat {
+        min(size.width, size.height) * fontScaleFactor
     }
     
     // MARK: - Drawing Constants
