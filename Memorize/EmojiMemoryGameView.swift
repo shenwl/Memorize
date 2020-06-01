@@ -28,19 +28,23 @@ struct CardView: View {
     
     var body: some View {
         GeometryReader(content: { geometry in
-            ZStack {
-                if self.card.isFaceUp {
-                    RoundedRectangle(cornerRadius: self.cornerRadius).fill(Color.white)
-                    RoundedRectangle(cornerRadius: self.cornerRadius).stroke(lineWidth: self.edgeLineWidth)
-                    Text(self.card.content)
-                } else {
-                    RoundedRectangle(cornerRadius: self.cornerRadius).fill()
-                }
-               
-            }
-            .foregroundColor(Color.orange)
-            .font(Font.system(size: min(geometry.size.width, geometry.size.height) * self.fontScaleFactor))
+            self.body(for: geometry.size)
         })
+    }
+    
+    func body(for size: CGSize) -> some View {
+        ZStack {
+            if card.isFaceUp {
+                RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
+                RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
+                Text(self.card.content)
+            } else {
+                RoundedRectangle(cornerRadius: cornerRadius).fill()
+            }
+           
+        }
+        .foregroundColor(Color.orange)
+        .font(Font.system(size: min(size.width, size.height) * fontScaleFactor))
     }
     
     // MARK: - Drawing Constants
